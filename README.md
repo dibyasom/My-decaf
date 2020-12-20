@@ -10,4 +10,4 @@
 
 |DAY | I Nailed ᐁ | Any inference? |
 |--- |---|---|
-|**1**  | 1. String Processing<br><br> 2. Subarray Sum  | 1. Backbone for string handling. <br><br> 2. Learnt the Sliding Window technique.|
+|**1**  | 1. String Processing<br><br> 2. Subarray Sum  | 1. Backbone for string handling. <br><br> 2. Learnt the Sliding Window technique.<br> Given an `array` swoop a window to look for information.|
