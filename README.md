@@ -12,3 +12,4 @@
 |--- |---|---|
 |**1**  | 1. String Processing<br><br> 2. Subarray Sum  | 1. Backbone for string handling. <br><br> 2. Learnt the Sliding Window technique.<br> Given an `array` swoop a window to look for information.|
 |**2**  | 1. Minimum Attendance<br>//Codeched December(2020) CookOff.<br> >[Try it yourself.](https://www.codechef.com/COOK125B/problems/ATTENDU)<br><br> 2.Catch the thief.<br>//Codeched December(2020) CookOff<br> >[Try it yourself.](https://www.codechef.com/COOK125B/problems/CATHIEF) | 1. Comptetive Coding,<br>Solved using `string` <br><br> 2. Competetive Coding, solved in O(1) time comp.|
+|**3**  | 1. Computing number of digits in O(logn)<br><br>  | 1. Use `floor(log10(n)+ 1);`|
