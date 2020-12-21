@@ -23,9 +23,12 @@ ll count_trailing_zeros(ll f){
 
 int trailing_zeros_in_factorial(ll num){
 
-    int k= floor(log10(num)/log10(5)), fives= 0;
-    while(k)
-        fives+= floor(num/ pow(5, k--));
+    // int k= floor(log10(num)/log10(5)), fives= 0;
+    // while(k)
+    //     fives+= floor(num/ pow(5, k--));
+    int fives= 0;
+    for(ll i=5; i<=num; i*=5)
+        fives+= floor(num/i);
     return fives;
 }
 
