@@ -6,8 +6,8 @@ typedef long long int ll;
 
 string can_thief_be_caught(ll x, ll y, ll k, ll n){
     if(!(abs(x-y) %(2*k)))
-        return "YES";
-    return "NO"; 
+        return "Yes";
+    return "No"; 
 }
 
 int main(void){
