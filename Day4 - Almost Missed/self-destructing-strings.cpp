@@ -9,10 +9,8 @@ int collapse_string(string str){
         return -1;
 
     for(int i=0; i<size; i++){
-        if(l<size && r<size){
-            str[l]='*'; str[r]='*';
-        }
         if((l<size && r<size) && (str[l] != str[r])){
+             str[l]='*'; str[r]='*';
             if(l-1 < 0){
                 l = i+1;
                 r = l+1;
