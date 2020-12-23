@@ -3,7 +3,7 @@
 using namespace std;
 
 int collapse_string(string str){
-    int size = str.length(), l = 0, r = 1;
+    int size = str.length(), l = 0, r = 1, rem = 0;
     
     if(size%2)
         return -1;
@@ -26,10 +26,14 @@ int collapse_string(string str){
             l=r;
             r++;
         }
+        cout << str;
+        printf("\ti=%d\tl=%d\tr=%d\n\n", i, l, r);
     }
 
-    cout << str << endl;
-    return 0;
+    for(int i=0; i<size; i++)
+        if(str[i]!='*')
+            rem++;
+    return rem/2;
 }
 
 int main(void){
