@@ -3,7 +3,7 @@
 using namespace std;
 
 int min_swaps(vector<int>& c, int x, int y){
-    int dealt= 0, len= c.size(), swaps= 0, ;
+    int dealt= 0, len= c.size(), swaps= 0;
     while(true){
         for(int i=0; i<len; i++){
             dealt+= c[i];
