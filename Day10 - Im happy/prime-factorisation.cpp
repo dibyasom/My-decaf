@@ -23,9 +23,9 @@ void prime_factors(ll num, vector<ll>& pf){
             pf.push_back(n);
             num/= n;
         }
-        n++;
+        n+=6;
     }
-    if(num>1)
+    if(num>3)
         pf.push_back(num);
 }
 
