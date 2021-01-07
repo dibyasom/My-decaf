@@ -7,13 +7,18 @@ typedef long long int ll;
 void all_divisors(ll);
 
 void all_divisors(ll num){ //Prints all divisors of num, *****returns-> void.
-    for(int i=1; i*i<=num; i++)
+    vector<ll> div_greater_than_root; ll i;
+    for(i=1; i*i<num; i++)
         if (!(num%i)){
             if(i!=num/i)
-                cout << i << ", " << num/i << ", ";
+                cout << i << " ";
             else
-                cout << i;
-        }
+                cout << i << " ";
+            }
+    for(; i>0; i--)
+        if(!(num%i))
+            cout << num/i << " ";
+    
     cout << endl;
 }
 
