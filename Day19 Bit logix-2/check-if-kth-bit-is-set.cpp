@@ -23,6 +23,8 @@ ll power_itr(ll n, ll p)
 bool check_kth_bit(ll num, ll k)
 {
     ll twoPowerK = power_itr(2, k);
+    if (twoPowerK > num)
+        return false;
     return (twoPowerK & num) == twoPowerK;
 }
 
