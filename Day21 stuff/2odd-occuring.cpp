@@ -1,3 +1,7 @@
+/*
+Find the only 2 odd occuring elements in a array when rest all elements have even frquency.
+*/
+
 #include <bits/stdc++.h>
 
 using namespace std;
