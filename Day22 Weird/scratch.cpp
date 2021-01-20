@@ -2,9 +2,11 @@
 
 using namespace std;
 
-float log2(int n)
+int log2(int);
+
+int log2(int n)
 {
-    float res = 0;
+    int res = 0;
     while (n >>= 1)
         res++;
     return res;
@@ -18,6 +20,11 @@ void set_lastk_bits(int *n, int k)
     }
 }
 
+int msb(int n)
+{
+    return (1 << log2(n));
+}
+
 int main(void)
 {
 
@@ -25,9 +32,10 @@ int main(void)
     // i >>= 1;
     // cout << (i) << " " << (INT_MAX) << endl;
     // cout << log2(16) << endl;
-    int i = 0, k = 5;
-    set_lastk_bits(&i, k);
-    cout << i << endl;
+    // int i = 0, k = 5;
+    // set_lastk_bits(&i, k);
+    // cout << i << endl;
+    cout << msb(5) << endl;
 
     return 0;
 }
