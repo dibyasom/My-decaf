@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include<math.h>
 
 // Find, Class, SubnetMask, Network ID.
 
@@ -22,50 +23,67 @@ char classOf(unsigned int b1){
 
 void insights(unsigned int IP, char class){
     
-    unsigned int setByte = 0xFF;
-    unsigned int s1=0, s2=0, s3=0, s4=0;
-    unsigned int n1=0, n2=0, n3=0, n4=0;
+    unsigned int subnetA = 0xFF << 24, subnetB = 0xFFFF << 16, subnetC = 0xFFFFFF << 8;
+    unsigned int networkAddr = 0, subnet, netConfigs=0, hostConfigs= 0;
+    int validSubnetExists = 1;
+    
     switch(class){
         case 'A':
-            s1 = setByte;
-            n1 = (IP >> 24) & setByte;
+            networkAddr = IP & subnetA;
+            subnet = subnetA;
+            netConfigs = pow(2, 7)-2; 
             break;
         case 'B':
-            s1 = setByte;
-            n1 = (IP >> 24) & setByte;
-            s2 = setByte;
-            n2 = (IP >> 16) & setByte;
+            networkAddr = IP & subnetB;
+            subnet = subnetB;
+            netConfigs = pow(2, 14)-2; 
             break;
         case 'C':
-            printf("Here\n");
-            s1 = setByte;
-            n1 = (IP >> 24) & setByte;
-            s2 = setByte;
-            n2 = (IP >> 16) & setByte;
-            s3 = setByte;
-            n3 = (IP >> 8) & setByte;
+            networkAddr = IP & subnetC;
+            subnet = subnetC;
+            netConfigs = pow(2, 21)-2; 
             break;
         case 'D':
-            printf("\nIpv4 ClASS-D\n");
-            printf("No Subnet Mask.\n");
-            return;
+            validSubnetExists = 0;
+            break;
         case 'E':
-            printf("\nIpv4 ClASS-E\n");
-            printf("No Subnet Mask.\n");
-            return;
+            validSubnetExists = 0;
+            break;
         default:
-            printf("Classless/Invalid :(\n");
+            printf("Classless/Invalid IP :(\n");
             return;
     }
     printf("\nIPv4 ClASS-%c\n", class);
-    printf("SUBNET MASK: %u.%u.%u.%u\n", s1, s2, s3, s4);
-    printf("NETWORK ID: %u.%u.%u.%u\n", n1, n2, n3, n4);
+    if(validSubnetExists){
+        int countSetBytes = 0, shift= 24;
+        printf("Subnet Mask:  ");
+        for(int i=0; i<4; i++){
+            printf("%u", (subnet >> shift)&0xFF);
+            if(i!=3)
+                printf(".");
+            shift-=8;
+        }
+        shift= 24;
+        printf("\nNetwork Addr: ");
+        for(int i=0; i<4; i++){
+            printf("%u", (networkAddr >> shift)&0xFF);
+            if((networkAddr >> shift)&0xFF)
+                countSetBytes++;
+            if(i!=3)
+                printf(".");
+            shift-=8;
+        }
+        printf("\nPossible Network Configurations: %u", netConfigs);
+        printf("\nMaximum Supported Hosts: %d", (int)pow(2, 8*countSetBytes));
+        printf("\n\nOkay Bye <3\n\n");
+    }
+    
 }
 
 int main(void){
     
     unsigned int temp=0, IP=0; char garbage;
-    printf("Drop the IP addr in the format <xxx.xxx.xxx.xxx>\n");
+    printf("\nDrop the IP addr in the format <xxx.xxx.xxx.xxx>\n");
     for(int i=0; i<4; i++){
         scanf("%d", &temp);
         IP <<= 8;
