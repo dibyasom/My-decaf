@@ -2,6 +2,7 @@
 #include<math.h>
 
 // Find, Class, SubnetMask, Network ID.
+void showDetailedAnalysis(unsigned int subnet, unsigned int networkAddr, unsigned int netConfigs);
 
 char classOf(unsigned int b1){
     b1 >>= 24;
@@ -21,10 +22,35 @@ char classOf(unsigned int b1){
         return 'X';
 }
 
+void showDetailedAnalysis(unsigned int subnet, unsigned int networkAddr, unsigned int netConfigs){
+    int countSetBytes = 0, shift= 24;
+    unsigned int hostConfigs= 0;
+    printf("Subnet Mask:  ");
+    for(int i=0; i<4; i++){
+        printf("%u", (subnet >> shift)&0xFF);
+        if(i!=3)
+            printf(".");
+        shift-=8;
+    }
+    shift= 24;
+    printf("\nNetwork Addr: ");
+    for(int i=0; i<4; i++){
+        printf("%u", (networkAddr >> shift)&0xFF);
+        if((networkAddr >> shift)&0xFF)
+            countSetBytes++;
+        if(i!=3)
+            printf(".");
+        shift-=8;
+    }
+    printf("\nPossible Network Configurations: %u", netConfigs);
+    printf("\nMaximum Supported Hosts: %d", (int)pow(2, 8*countSetBytes));
+    printf("\n\nOkay Bye <3\n\n");
+}
+
 void insights(unsigned int IP, char class){
     
     unsigned int subnetA = 0xFF << 24, subnetB = 0xFFFF << 16, subnetC = 0xFFFFFF << 8;
-    unsigned int networkAddr = 0, subnet, netConfigs=0, hostConfigs= 0;
+    unsigned int networkAddr = 0, subnet, netConfigs=0;
     int validSubnetExists = 1;
     
     switch(class){
@@ -54,29 +80,8 @@ void insights(unsigned int IP, char class){
             return;
     }
     printf("\nIPv4 ClASS-%c\n", class);
-    if(validSubnetExists){
-        int countSetBytes = 0, shift= 24;
-        printf("Subnet Mask:  ");
-        for(int i=0; i<4; i++){
-            printf("%u", (subnet >> shift)&0xFF);
-            if(i!=3)
-                printf(".");
-            shift-=8;
-        }
-        shift= 24;
-        printf("\nNetwork Addr: ");
-        for(int i=0; i<4; i++){
-            printf("%u", (networkAddr >> shift)&0xFF);
-            if((networkAddr >> shift)&0xFF)
-                countSetBytes++;
-            if(i!=3)
-                printf(".");
-            shift-=8;
-        }
-        printf("\nPossible Network Configurations: %u", netConfigs);
-        printf("\nMaximum Supported Hosts: %d", (int)pow(2, 8*countSetBytes));
-        printf("\n\nOkay Bye <3\n\n");
-    }
+    if(validSubnetExists)
+        showDetailedAnalysis(subnet, networkAddr, netConfigs);
     
 }
 
