@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<math.h>
+#include<stdlib.h>
 
 // Find, Class, SubnetMask, Network ID.
 void showDetailedAnalysis(unsigned int subnet, unsigned int networkAddr, unsigned int netConfigs);
@@ -8,8 +9,12 @@ char classOf(unsigned int b1){
     b1 >>= 24;
     if(b1<0)
         return 'X';
-    else if(b1<128)
+    else if(b1<127)
         return 'A';
+    else if(b1==127){
+        printf("\nLoopback IP.\n\n");
+        exit(0);
+    }
     else if(b1<192)
         return 'B';
     else if(b1<224)
