@@ -20,12 +20,24 @@ void filter_odd_occuring(vector<ll> &arr)
         else
             setB ^= arr[i];
 
-    cout << setA << " " << setB << endl;
+    if (setA < setB)
+        cout << setA << " " << setB << endl;
+    else
+        cout << setB << " " << setA << endl;
 }
 
 int main(void)
 {
-    vector<ll> arr = {1, 2, 1, 1, 100, 1, 5, 5};
+    ll size;
+    cin >> size;
+    vector<ll> arr;
+    while (size--)
+    {
+        ll temp;
+        cin >> temp;
+        arr.push_back(temp);
+    }
+
     filter_odd_occuring(arr);
 
     return 0;
